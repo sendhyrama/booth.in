@@ -45,7 +45,7 @@ if ($error) {
         <?php echo $error ?>
     </div>
 <?php
-    header("refresh:5;url=verifikasi.php"); // refresh halaman data user
+    header("refresh:3;url=verifikasi.php"); // refresh halaman data user
 }
 ?>
 <?php
@@ -55,7 +55,7 @@ if ($sukses) {
         <?php echo $sukses ?>
     </div>
 <?php
-    header("refresh:5;url=verifikasi.php");
+    header("refresh:3;url=verifikasi.php");
 }
 ?>
 
@@ -66,7 +66,7 @@ if ($sukses) {
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kelola Stand - Stand.in</title>
+    <title>Verifikasi Stand - Stand.in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">

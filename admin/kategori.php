@@ -30,7 +30,7 @@ if ($error) {
         <?php echo $error ?>
     </div>
 <?php
-    header("refresh:5;url=kategori.php"); // refresh halaman data user
+    header("refresh:3;url=kategori.php"); // refresh halaman data user
 }
 ?>
 
@@ -41,20 +41,25 @@ if ($sukses) {
         <?php echo $sukses ?>
     </div>
 <?php
-    header("refresh:5;url=kategori.php");
+    header("refresh:3;url=kategori.php");
 }
 
-if (isset($_POST['addcategory'])) {
-    $idkategori = $_POST['ID_JENIS'];
-    $namakategori = $_POST['NAMA_JENIS'];
-
-    $tambahkat = mysqli_query($conn, "insert into jenis_stand (ID_JENIS, NAMA_JENIS) values ('$idkategori','$namakategori')");
-    if ($tambahkat) {
-        echo "
-		<meta http-equiv='refresh' content='10; url= kategori.php'/>  ";
+if (isset($_POST['addkategori'])) {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $tambahkategori = mysqli_query($conn, "insert into jenis_stand (ID_JENIS, NAMA_JENIS) values ('$id','$nama')");
+    if ($tambahkategori) {
+        echo " 
+        <div class='alert alert-success' role='alert' style='text-align:center ;'>
+            Berhasil menambahkan kategori baru.
+        </div>
+		<meta http-equiv='refresh' content='3; url= kategori.php'/>  ";
     } else {
         echo "
-		 <meta http-equiv='refresh' content='10; url= kategori.php'/> ";
+        <div class='alert alert-danger' role='alert' style='text-align:center ;'>
+            Gagal menambahkan kategori baru.
+        </div>
+		<meta http-equiv='refresh' content='3; url= kategori.php'/> ";
     }
 };
 ?>
@@ -270,15 +275,15 @@ if (isset($_POST['addcategory'])) {
                     <form method="post">
                         <div class="form-group">
                             <label>ID Kategori</label>
-                            <input name="idkategori" type="text" class="form-control" required autofocus>    
+                            <input name="id" type="text" class="form-control" required autofocus>    
                             <label>Nama Kategori</label>
-                            <input name="namakategori" type="text" class="form-control" required autofocus>
+                            <input name="nama" type="text" class="form-control" required autofocus>
                         </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <input name="addcategory" type="submit" class="btn btn-primary" value="Tambah">
+                    <input name="addkategori" type="submit" class="btn btn-primary" value="Tambah">
                 </div>
                 </form>
             </div>

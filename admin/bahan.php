@@ -30,7 +30,7 @@ if ($error) {
         <?php echo $error ?>
     </div>
 <?php
-    header("refresh:5;url=bahan.php"); // refresh halaman data user
+    header("refresh:3;url=bahan.php"); // refresh halaman data user
 }
 ?>
 
@@ -41,19 +41,26 @@ if ($sukses) {
         <?php echo $sukses ?>
     </div>
 <?php
-    header("refresh:5;url=bahan.php");
+    header("refresh:3;url=bahan.php");
 }
 
 if (isset($_POST['addbahan'])) {
-    $namabahan = $_POST['NAMA_BAHAN'];
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
 
-    $tambahbhn = mysqli_query($conn, "insert into BAHAN_STAND (NAMA_BAHAN) values ('$namabahan')");
-    if ($tambahbhn) {
+    $tambahbahan = mysqli_query($conn, "insert into BAHAN_STAND (ID_BAHAN, NAMA_BAHAN) values ('$id', '$nama')");
+    if ($tambahbahan) {
         echo "
-		<meta http-equiv='refresh' content='1; url= bahan.php'/>  ";
+        <div class='alert alert-success' role='alert' style='text-align:center ;'>
+			Berhasil menambahkan bahan baru.
+		</div>
+		<meta http-equiv='refresh' content='3; url= bahan.php'/>  ";
     } else {
         echo "
-		 <meta http-equiv='refresh' content='1; url= bahan.php'/> ";
+        <div class='alert alert-danger' role='alert' style='text-align:center ;'>
+			Gagal menambahkan bahan baru.
+		</div>
+		<meta http-equiv='refresh' content='3; url= bahan.php'/> ";
     }
 };
 ?>
@@ -268,14 +275,16 @@ if (isset($_POST['addbahan'])) {
                 <div class="modal-body">
                     <form method="post">
                         <div class="form-group">
-                            <label>Nama Kategori</label>
-                            <input name="namakategori" type="text" class="form-control" required autofocus>
+                            <label>ID Bahan</label>
+                            <input name="id" type="text" class="form-control" required autofocus>
+                            <label>Nama Bahan</label>
+                            <input name="nama" type="text" class="form-control" required autofocus>
                         </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <input name="addcategory" type="submit" class="btn btn-primary" value="Tambah">
+                    <input name="addbahan" type="submit" class="btn btn-primary" value="Tambah">
                 </div>
                 </form>
             </div>

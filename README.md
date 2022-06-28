@@ -1,2 +1,2 @@
-# booth.in
-NGEBOOTH
+# Stand.in
+stand.in(FP-Pemweb)

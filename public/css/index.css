@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    height: 20%;
+    width: 100%;
+    padding: 0 8%;
+    background: white;
+    
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav h4{
+    font-size: 1.25em;
+}
+
+.nav-links{
+    padding: 28px 0;
+}
+.nav-links li{
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.nav-links li a{
+    text-decoration: none;
+    color: black;
+    padding: 5px 0;
+    position: relative;
+
+   
+}
+
+.nav-links li a:hover{
+    color: black;
+    transition: 0.5s;
+}
+
+.btn{
+    background: yellow;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 10px 30px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: yellow;
+    color: black;
+    box-shadow: 3px 5px rgba(108, 122, 137,0.9);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.container{
+    margin-top: 20vh;
+}
+.container h2{
+    font-size: 50px;
+}
+.button{
+    width: 25%;
+    margin-top: 30px;
+    background: yellow;
+    border-radius: 10px;
+    padding: 10px 30px;
+
+}
+.button a{
+    text-decoration: none;
+    color: black;
+}
+.button a h3{
+    text-align: center;
+}
+
+.button:hover{
+    background: yellow;
+    border-radius: 10px;
+    box-shadow: 5px 10px rgba(108, 122, 137,0.9);
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+img {
+    float: right;
+    width: 80vh;
+    display: flex;
+         
+  }
+  
+  .recommendation-container {
+    margin: 40px 100px;
+  }
+
+  .recommendation-box{
+    margin-top: 30px;
+    margin-left: 100px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .recom-hover{
+    transition: 0.2s;
+    border-radius: 15px 15px 15px 0;
+    width: 70%;
+    height: 220px;
+  }
+
+  .recom-hover a{
+    text-decoration: none;
+    color: black;
+  }
+
+
+  .recom-item {
+    transition: 0.4s;
+  }
+
+  .recom-item:hover{
+    background-color: #FFEB34;
+    color: white;
+    box-shadow: 2px 2px rgba(108, 122, 137,0.5);
+  }
+  .recom-item:hover .img-arrow {
+   
+   transform: translateX(180px);
+    transition: 0.5s;
+  }
+
+  
+
+  .recom-grup {
+    float: left;
+    text-align: left;
+    font-size: 25px;
+  }
+
+  .recom-item{
+    width: 100%;
+    height: 220px;
+    margin-bottom: 30px;
+    padding: 20px 20px;
+    background-color: #f4f5f5;
+    border-radius: 15px 15px 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: justify;
+  }
+
+  .recom-item h3{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient:vertical;
+  }
+
+  .recom-hover{
+    margin-bottom: 30px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .arrow:hover{
+    transform: scaleX(100%);
+  }
+
+  .img-arrow{
+    max-width: 20px;
+    transform: translateX(0);
+    transition: 0.5s;
+  }
+
+  .img-arrow:hover{
+    
+  }

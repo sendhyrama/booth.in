@@ -185,7 +185,8 @@ $countReqVerif3 = $countReqVerif2['totalReqVerif'];
                                     <h2>Selamat Datang</h2>
                                 </div>
                                 <div class="market-status-table mt-4">
-                                    Anda masuk sebagai <strong><?php echo $_SESSION['name'] ?></strong>
+                                    Anda masuk sebagai <strong><?php echo 'Admin' ?></strong>
+                                    <!-- $_SESSION['NAMA_ADMIN'] -->
                                     <br>
                                     <p>Pada halaman admin, Anda dapat menambah kategori dan bahan stand, mengelola stand,
                                         serta mengelola user dan juga admin</p>
