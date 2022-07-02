@@ -44,10 +44,19 @@ if ($sukses) {
     header("refresh:3;url=kategori.php");
 }
 
+
+// auto increment buat id_jenis
+$autoincrement = mysqli_query($conn, "select max(id_jenis) as max_id from jenis_stand");
+$data = mysqli_fetch_array($autoincrement);
+$id = $data['max_id'];
+$urut = (int)substr($id, 3, 3);
+$urut++;
+$huruf = "JNS";
+$id_jenis = $huruf . sprintf("%03s", $urut);
+
 if (isset($_POST['addkategori'])) {
-    $id = $_POST['id'];
     $nama = $_POST['nama'];
-    $tambahkategori = mysqli_query($conn, "insert into jenis_stand (ID_JENIS, NAMA_JENIS) values ('$id','$nama')");
+    $tambahkategori = mysqli_query($conn, "insert into jenis_stand (ID_JENIS, NAMA_JENIS) values ('$id_jenis','$nama')");
     if ($tambahkategori) {
         echo " 
         <div class='alert alert-success' role='alert' style='text-align:center ;'>
@@ -274,8 +283,6 @@ if (isset($_POST['addkategori'])) {
                 <div class="modal-body">
                     <form method="post">
                         <div class="form-group">
-                            <label>ID Kategori</label>
-                            <input name="id" type="text" class="form-control" required autofocus>    
                             <label>Nama Kategori</label>
                             <input name="nama" type="text" class="form-control" required autofocus>
                         </div>

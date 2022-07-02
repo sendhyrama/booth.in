@@ -104,7 +104,7 @@ img {
 
   .recommendation-box{
     margin-top: 30px;
-    margin-left: 100px;
+    margin-left: 150px;
     display: grid;
     justify-content: center;
     grid-template-columns: 1fr 1fr;
@@ -120,6 +120,7 @@ img {
   .recom-hover a{
     text-decoration: none;
     color: black;
+    width: 500px;
   }
 
 
@@ -133,8 +134,9 @@ img {
     box-shadow: 2px 2px rgba(108, 122, 137,0.5);
   }
   .recom-item:hover .img-arrow {
-   
+   transform: rotate(90%);
    transform: translateX(180px);
+   opacity: 1;
     transition: 0.5s;
   }
 
@@ -142,7 +144,7 @@ img {
 
   .recom-grup {
     float: left;
-    text-align: left;
+    text-align: center;
     font-size: 25px;
   }
 
@@ -195,6 +197,7 @@ img {
     max-width: 20px;
     transform: translateX(0);
     transition: 0.5s;
+    opacity: 0;
   }
 
   .img-arrow:hover{

@@ -44,11 +44,20 @@ if ($sukses) {
     header("refresh:3;url=bahan.php");
 }
 
+
+// auto increment buat id_bahan
+$autoincrement = mysqli_query($conn, "select max(id_bahan) as max_id from bahan_stand");
+$data = mysqli_fetch_array($autoincrement);
+$id = $data['max_id'];
+$urut = (int)substr($id, 3, 3);
+$urut++;
+$huruf = "BHN";
+$id_bahan = $huruf . sprintf("%03s", $urut);
+
 if (isset($_POST['addbahan'])) {
-    $id = $_POST['id'];
     $nama = $_POST['nama'];
 
-    $tambahbahan = mysqli_query($conn, "insert into BAHAN_STAND (ID_BAHAN, NAMA_BAHAN) values ('$id', '$nama')");
+    $tambahbahan = mysqli_query($conn, "insert into BAHAN_STAND (ID_BAHAN, NAMA_BAHAN) values ('$id_bahan', '$nama')");
     if ($tambahbahan) {
         echo "
         <div class='alert alert-success' role='alert' style='text-align:center ;'>
@@ -275,8 +284,6 @@ if (isset($_POST['addbahan'])) {
                 <div class="modal-body">
                     <form method="post">
                         <div class="form-group">
-                            <label>ID Bahan</label>
-                            <input name="id" type="text" class="form-control" required autofocus>
                             <label>Nama Bahan</label>
                             <input name="nama" type="text" class="form-control" required autofocus>
                         </div>

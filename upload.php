@@ -1,7 +1,18 @@
 <?php
+
 include 'koneksi.php';
 $q = 'select * from user';
 $result = mysqli_query($conn, $q);
+
+//memanggil method fungsi
+require 'fungsi.php';
+
+//cek apakah tombol submit telah di klik atau belum
+if( isset($_POST["submit"]) ){
+    tambah($_POST);
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +23,7 @@ $result = mysqli_query($conn, $q);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/style.css" type="text/css">
-    <title>Stand.in || Upload Stand 
-    </title>
-    <Stand class="in"></Stand>
+    <title>Upload - Stand.in</title>
     
     <style>
         .title-upload{
@@ -82,7 +91,7 @@ $result = mysqli_query($conn, $q);
             padding: 12px 20px;
             margin: 8px 10px 8px 5px;
             display: inline;
-            width: 11%;
+            width: 13%;
         }
 
         form .block{
@@ -92,6 +101,48 @@ $result = mysqli_query($conn, $q);
         input:out-of-range {
         border:2px solid red;
         }
+
+        form .gambar-upload{
+            margin-top: 20px;
+            position: absolute;
+            align-items: right;
+            width:250px;
+            height:250px;
+            border-radius:5%;
+            margin-bottom: 20px;
+        }
+
+        form .file{
+            margin-top:240px;
+            margin-bottom:20px;
+        }
+        
+        form .upload-gambar{
+            font-size: 16px;
+            background:black;
+            border-radius: 50px;
+            box-shadow: 5px 5px 10px black;
+            width: 350px;
+            outline: none;
+            color: white;
+        }
+
+        ::-webkit-file-upload-button{
+            color: white;
+            background: 20px;
+            padding: 20px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 1px 0 1px 1px yellow;
+            outline:none;
+        }
+
+        ::-webkit-file-upload-button:hover{
+            cursor: pointer;
+            background: rgb(59, 59, 59);
+        }
+
+
     </style>
 </head>
 
@@ -99,44 +150,63 @@ $result = mysqli_query($conn, $q);
     <div class="header">
         <nav>
             <h4>Standin</h4>
-            <ul class="nav-links">
+            <!-- <ul class="nav-links">
                 <li><a href="">About</a></li>
                 <li><a href="">Contacts</a></li>
                 <li class="btn"><a href="signup.php">Sign Up</a></li>
                 <li class="btn"><a href="login.php">Log In</a></li>
-            </ul>
+            </ul> -->
         </nav>
         <div class="title-upload">
             <h2>Upload Stand</h2>
         </div>
         <div class= "form-border">
         <div class= "form-upload">
-        <form action="/proses_upload.php" method= post;>
+        <form action="" method="post" enctype="multipart/form-data">
+            <h2 class="block">Pilih Gambar</h2>
+            <img src="public/img/foto_stand.jpg" class="gambar-upload" name="gambar" id="gambar" onclick="klikfile()" border="3"></img> <br>
+            <div class="file">
+            <input type="file" class="upload-gambar" name='file' onchange="tampilkanGambar(this)" id="file"></div>            
             <h2>Judul</h2>
-            <input type="text" id="judul" name="judul" placeholder="Judul iklan" maxlength="50" autofocus required>
+            <input type="text" id="judul" name="judul" placeholder="Judul iklan" maxlength="50" required>
             <h2>Deskripsi</h2>
             <p><strong>Tip:</strong> Deskripsikan Informasi Stand Anda Disini <b>( Maksimal: 200 kata )<b> </p>           
             <textarea maxlength="200" name = "deskripsi"></textarea>
             <h2>Bahan Stand</h2>
             <select id="bahan" name="bahan" required>
             <option value=""></option>
-            <option value="BHN001">Besi</option>
-            <option value="BHN002">Kayu</option>
-            <option value="BHN003">Aluminium</option>
-            <option value="BHN004">Spandek</option>
+            <?php 
+
+                $readuser = "select * from bahan_stand";
+                $q = mysqli_query($conn, $readuser);
+
+                while ($bahan = mysqli_fetch_array($q)) {
+                    ?>
+                    <option value="<?php echo $bahan['ID_BAHAN']; ?>" > <?php echo $bahan['NAMA_BAHAN']; ?></option>
+                    <?php
+                }
+            ?>
             </select>
             <h2>Jenis Stand</h2>
             <select id="jenis" name="jenis" required>
             <option value=""></option>
-            <option value="JNS001">Makanan</option>
-            <option value="JNS002">Minuman</option>
-            <option value="JNS003">Makanan & Minuman</option>
+            <?php 
+
+                $readuser = "select * from jenis_stand";
+                $q = mysqli_query($conn, $readuser);
+
+                while ($bahan = mysqli_fetch_array($q)) {
+                    ?>
+                    <option value="<?php echo $bahan['ID_JENIS']; ?>" > <?php echo $bahan['NAMA_JENIS']; ?></option>
+                    <?php
+                }
+            ?>
             </select>
             <h2 class="block">Ukuran</h2>
             <p><strong>Contoh: </strong>3 x 3 Meter </p>
-            <input type="text" class="input-ukuran" id="ukuran1" name="ukuran1" pattern="[0-9]" maxlength="4" onkeypress="return inputangka(event)" required>
+            <input type="text" class="input-ukuran" id="ukuran1" name="ukuran1" maxlength="4" onkeypress="return inputangka(event)" required>
             <label> X </label>
-            <input type="text" class="input-ukuran" id="ukuran2" name="ukuran2" pattern="[0-9]" maxlength="4" onkeypress="return inputangka(event)" required>
+            <input type="text" class="input-ukuran" id="ukuran2" name="ukuran2" maxlength="4" onkeypress="return inputangka(event)" required>
             <label> Meter </label>
             <h2 class="block">Alamat</h2>
             <input type="text" id="alamat" name="alamat" placeholder="Alamat lengkap stand" maxlength="50" required>
@@ -144,9 +214,9 @@ $result = mysqli_query($conn, $q);
             <input type="text" id="kota" name="kota" placeholder="Nama kota" maxlength="50" required>
             <h2 class="block" >Harga Sewa </h2>
             <label>Rp. </label>
-            <input type="text" class="input-harga" id="harga" name="harga" pattern="[0-9]" maxlength="11" onkeypress="return inputangka(event)" required>
+            <input type="text" class="input-harga" id="harga" name="harga" maxlength="11" onkeypress="return inputangka(event)" required>
             <label> / Bulan </label>
-            <input type="submit" value="Upload Stand">
+            <input type="submit" name="submit" value="Upload Stand">
             
         </form>
         </div>

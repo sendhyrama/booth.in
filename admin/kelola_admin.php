@@ -47,14 +47,24 @@ if ($sukses) {
     header("refresh:3;url=kelola_admin.php");
 }
 
+
+// auto increment buat id_admin
+$autoincrement = mysqli_query($conn, "select max(id_admin) as max_id from admin");
+$data = mysqli_fetch_array($autoincrement);
+$id = $data['max_id'];
+$urut = (int)substr($id, 3, 3);
+$urut++;
+$huruf = "ADM";
+$id_admin = $huruf . sprintf("%03s", $urut);
+
 if (isset($_POST['addadmin'])) {
-    $id = $_POST['id'];
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $tambahadmin = mysqli_query($conn, "insert into admin (ID_ADMIN, NAMA_ADMIN, EMAIL_ADMIN, USERNAME_ADMIN, PASSWORD_ADMIN) values('$id','$nama','$email','$username','$password')");
+    $tambahadmin = mysqli_query($conn, "insert into admin (ID_ADMIN, NAMA_ADMIN, EMAIL_ADMIN, USERNAME_ADMIN, PASSWORD_ADMIN) 
+                                values('$id_admin','$nama','$email','$username','$password')");
     if ($tambahadmin) {
         echo " 
         <div class='alert alert-success' role='alert' style='text-align:center ;'>
@@ -274,12 +284,10 @@ if (isset($_POST['addadmin'])) {
                 <div class="modal-body">
                     <form method="post">
                         <div class="form-group">
-                            <label>ID Admin</label>
-                            <input name="id" type="text" class="form-control" required autofocus>    
                             <label>Nama Admin</label>
                             <input name="nama" type="text" class="form-control" required autofocus>
                             <label>Email</label>
-                            <input name="email" type="text" class="form-control" required autofocus>    
+                            <input name="email" type="text" class="form-control" required autofocus>
                             <label>Username</label>
                             <input name="username" type="text" class="form-control" required autofocus>
                             <label>Password</label>
@@ -295,7 +303,7 @@ if (isset($_POST['addadmin'])) {
             </div>
         </div>
     </div>
-    
+
     <script>
         $(document).ready(function() {
             $('#dataTable3').DataTable({

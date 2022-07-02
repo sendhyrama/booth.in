@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Login StandIn</title>
+    <title>Login Admin StandIn</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
         * {
@@ -21,7 +21,9 @@
         h2 {
             text-align: center;
         }
-        
+        h5 {
+            text-align: center;
+        }
         div.register {
             margin-top: 70px;
             background-color: #FAFAFA;
@@ -99,13 +101,11 @@
                 <label>Password</label>
                 <br>
                 <input type="password" placeholder="Masukkan password anda" id="details" required>
-                <br><br><br><br>
+                <br><br>
                 <input type="submit" value="Login" id="submit" class="pointer">
                 <br><br>
-                <input type="button" value="Lupa password?" id="forgot" class="pointer" onclick="location.href='lupa_password.php';">
-                <br><hr><br>
-                <input type="button" value="Buat Akun Baru" id="submit" class="pointer" onclick="location.href='registrasi-standin.html';">
-                <br><br>
+
+                <h5>Log As Admin</h5>
             </form>
         </div>
     </div>

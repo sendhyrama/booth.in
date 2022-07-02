@@ -12,7 +12,7 @@ $result = mysqli_query($conn, $q);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/index.css" type="text/css">
-    <title>Home <Stand class="in"></Stand>
+    <title>Stand.in | Homepage
     </title>
 </head>
 
@@ -23,8 +23,8 @@ $result = mysqli_query($conn, $q);
             <ul class="nav-links">
                 <li><a href="">About</a></li>
                 <li><a href="">Contacts</a></li>
-                <li class="btn"><a href="signup.php">Sign Up</a></li>
-                <li class="btn"><a href="login.php">Log In</a></li>
+                <li class="btn"><a href="upload.php">Upload</a></li>
+                <li class="btn"><a href="kelola.php">Kelola</a></li>
             </ul>
         </nav>
 
@@ -44,11 +44,11 @@ $result = mysqli_query($conn, $q);
 
 
         <div class="recommendation-box">
+            <?php
+            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            ?>
+                <div class="recom-hover">
 
-            <div class="recom-hover">
-                <?php
-                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                ?>
                     <a href="#">
                         <div class="recom-item">
                             <div class="recom-grup">
@@ -59,10 +59,11 @@ $result = mysqli_query($conn, $q);
                         </div>
 
                     </a>
-                <?php
-                }
-                ?>
-            </div>
+
+                </div>
+            <?php
+            }
+            ?>
 
 
         </div>
@@ -75,3 +76,31 @@ $result = mysqli_query($conn, $q);
 </body>
 
 </html>
+
+
+<!-- 
+    <div class="recommendation-box">
+    <?php
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    ?>
+                <div class="recom-hover">
+
+                    <a href="#">
+                        <div class="recom-item">
+                            <div class="recom-grup">
+                                <h4><?php echo $row['JUDUL']; ?></h4>
+                            </div>
+                            <h3> <?php echo $row['DESKRIPSI']; ?></h3>
+                            <img src="public/img/right-arrow.png" class="img-arrow" alt="">
+                        </div>
+
+                    </a>
+
+                </div>
+            <?php
+        }
+            ?>
+
+
+        </div>
+ -->
