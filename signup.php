@@ -18,9 +18,15 @@ if (isset($_POST['adduser'])) {
     $no_telp_user = $_POST['no_telp_user'];
     $alamat_user = $_POST['alamat_user'];
 
-    $tambahuser = mysqli_query($conn, "insert into user (ID_USER, NAMA_USER, EMAIL_USER, USERNAME_USER, PASSWORD_USER, NO_TELP_USER, ALAMAT_USER) 
-                                values('$id_user', '$nama_user', '$email_user', '$username_user', '$password_user', '$no_telp_user', '$alamat_user')");
-
+    $check_username= mysqli_query($conn, "SELECT USERNAME_USER FROM USER WHERE USERNAME_USER = '$username_user'");
+    if(mysqli_num_rows($check_username) > 0){
+        echo('username Already exists');
+    }
+        else {
+            $tambahuser = mysqli_query($conn, "insert into user (ID_USER, NAMA_USER, EMAIL_USER, USERNAME_USER, PASSWORD_USER, NO_TELP_USER, ALAMAT_USER) 
+            values('$id_user', '$nama_user', '$email_user', '$username_user', '$password_user', '$no_telp_user', '$alamat_user')");
+        }
+   
     if ($tambahuser) {
         echo '
         <script type="text/javascript">

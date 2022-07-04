@@ -18,15 +18,15 @@ include 'koneksi.php';
         <nav>
             <h4>Standin</h4>
             <ul class="nav-links">
-                <li><a href="">About</a></li>
-                <li><a href="">Contacts</a></li>
+                <li><a href="about_us.php">About</a></li>
+                <li><a href="contact.php">Contacts</a></li>
                 <li class="btn"><a href="signup.php">Sign Up</a></li>
                 <li class="btn"><a href="login.php">Log In</a></li>
             </ul>
         </nav>
 
         <div id="img">
-            <img src="public/img/foto_stand.jpg"><br>
+            <img src="public/img/foto_stand.jpg" class="img-home"><br>
         </div>
 
         <div class="container">

@@ -197,10 +197,8 @@ if ($sukses) {
                                                 <th>ID_Stand</th>
                                                 <th>Foto</th>
                                                 <th>Judul</th>
-                                                <th>Deskripsi</th>
                                                 <th>Ukuran</th>
                                                 <th>Harga</th>
-                                                <th>Alamat</th>
                                                 <th>Kota</th>
                                                 <th>Pilih Aksi</th>
                                             </tr>
@@ -208,7 +206,7 @@ if ($sukses) {
 
                                         <tbody>
                                             <?php
-                                            $sqlread = "select * from stand where status IS NULL order by id_stand asc";
+                                            $sqlread = "SELECT * FROM stand WHERE status  LIKE '' ORDER BY id_stand ASC";
                                             $qread = mysqli_query($conn, $sqlread);
                                             $urut = 1;
 
@@ -216,10 +214,8 @@ if ($sukses) {
                                                 $id = $read['ID_STAND'];
                                                 $foto = $read['FOTO_STAND'];
                                                 $judul = $read['JUDUL'];
-                                                $deskripsi = $read['DESKRIPSI'];
                                                 $ukuran = $read['UKURAN'];
                                                 $harga = $read['HARGA_STAND'];
-                                                $alamat = $read['ALAMAT'];
                                                 $kota = $read['KOTA'];
                                             ?>
                                                 <tr>
@@ -227,10 +223,8 @@ if ($sukses) {
                                                     <td scope="row"><?= $id ?></td>
                                                     <td scope="row"><?= $foto ?></td>
                                                     <td scope="row"><?= $judul ?></td>
-                                                    <td scope="row"><?= $deskripsi ?></td>
                                                     <td scope="row"><?= $ukuran ?></td>
                                                     <td scope="row"><?= $harga ?></td>
-                                                    <td scope="row"><?= $alamat ?></td>
                                                     <td scope="row"><?= $kota ?></td>
                                                     <td scope="row">
                                                         <a href="verifikasi.php?op=tolak&id=<?php echo $id ?>" onclick="return confirm('Tolak verifikasi stand ?')"><button type="button" class="btn btn-danger">Tolak</button></a>

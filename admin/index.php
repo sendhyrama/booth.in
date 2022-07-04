@@ -10,7 +10,7 @@ $countStand = mysqli_query($conn, "select count(ID_STAND) as totalStand from sta
 $countStand2 = mysqli_fetch_assoc($countStand);
 $countStand3 = $countStand2['totalStand'];
 
-$countReqVerif = mysqli_query($conn, "select count(ID_STAND) as totalReqVerif from stand where STATUS is NULL");
+$countReqVerif = mysqli_query($conn, "select count(ID_STAND) as totalReqVerif from stand where STATUS like ''");
 $countReqVerif2 = mysqli_fetch_assoc($countReqVerif);
 $countReqVerif3 = $countReqVerif2['totalReqVerif'];
 

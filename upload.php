@@ -1,4 +1,9 @@
 <?php
+session_start();
+//cek apakah user sudah login 
+if(!isset($_SESSION["Login"])){
+    header('Location:login.php');
+}
 
 include 'koneksi.php';
 $q = 'select * from user';
@@ -12,9 +17,7 @@ if( isset($_POST["submit"]) ){
     tambah($_POST);
 }
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +25,9 @@ if( isset($_POST["submit"]) ){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/css/style.css" type="text/css">
-    <title>Upload - Stand.in</title>
+    <link rel="stylesheet" href="public/css/index.css" type="text/css">
+    <title>Upload Stand | Stand.in
+    </title>
     
     <style>
         .title-upload{
@@ -105,16 +109,14 @@ if( isset($_POST["submit"]) ){
         form .gambar-upload{
             margin-top: 20px;
             position: absolute;
-            align-items: right;
             width:250px;
             height:250px;
             border-radius:5%;
-            margin-bottom: 20px;
         }
 
         form .file{
-            margin-top:240px;
-            margin-bottom:20px;
+            margin-left:250px;
+            margin-bottom:180px;
         }
         
         form .upload-gambar{
@@ -150,12 +152,11 @@ if( isset($_POST["submit"]) ){
     <div class="header">
         <nav>
             <h4>Standin</h4>
-            <!-- <ul class="nav-links">
-                <li><a href="">About</a></li>
-                <li><a href="">Contacts</a></li>
-                <li class="btn"><a href="signup.php">Sign Up</a></li>
-                <li class="btn"><a href="login.php">Log In</a></li>
-            </ul> -->
+            <ul class="nav-links">
+                <li class="btn" style="background: black;"><a style="color: white;" href="homepage.php" >< Homepage</a></li>
+                <li class="btn"><a href="upload.php">Upload</a></li>
+                <li class="btn"><a href="kelola.php">Kelola</a></li>
+            </ul>
         </nav>
         <div class="title-upload">
             <h2>Upload Stand</h2>
@@ -211,8 +212,20 @@ if( isset($_POST["submit"]) ){
             <h2 class="block">Alamat</h2>
             <input type="text" id="alamat" name="alamat" placeholder="Alamat lengkap stand" maxlength="50" required>
             <h2>Kota</h2>
-            <input type="text" id="kota" name="kota" placeholder="Nama kota" maxlength="50" required>
-            <h2 class="block" >Harga Sewa </h2>
+            <select id="kota" name="kota" required>
+            <option value=""></option>
+            <?php 
+                $readuser = "select * from kota";
+                $q = mysqli_query($conn, $readuser);
+
+                while ($bahan = mysqli_fetch_array($q)) {
+                    ?>
+                    <option value="<?php echo $bahan['nama_kota']; ?>" > <?php echo $bahan['nama_kota']; ?></option>
+                    <?php
+                }
+            ?>
+            </select>
+            <h2>Harga Sewa </h2>
             <label>Rp. </label>
             <input type="text" class="input-harga" id="harga" name="harga" maxlength="11" onkeypress="return inputangka(event)" required>
             <label> / Bulan </label>
@@ -225,3 +238,4 @@ if( isset($_POST["submit"]) ){
 </body>
 <script src="public/js/myscript.js"></script>
 </html>
+

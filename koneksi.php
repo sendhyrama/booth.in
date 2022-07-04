@@ -2,7 +2,7 @@
 $host   = "localhost";
 $user   = "root";
 $pass   = "";
-$db     = "stand_in";
+$db     = "stand.in";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 if (!$conn) {
@@ -11,5 +11,3 @@ if (!$conn) {
 }else {
     
 }
-
-?>
